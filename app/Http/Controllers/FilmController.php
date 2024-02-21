@@ -13,7 +13,7 @@ class FilmController extends Controller
      */
     public function index()
     {
-        //
+        return "hello";
     }
 
     /**
