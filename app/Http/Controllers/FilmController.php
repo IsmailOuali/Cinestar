@@ -13,7 +13,8 @@ class FilmController extends Controller
      */
     public function index()
     {
-        return "hello";
+        $films = Film::all();
+        return response()->json($films, 200);
     }
 
     /**
@@ -21,7 +22,7 @@ class FilmController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -29,7 +30,10 @@ class FilmController extends Controller
      */
     public function store(StoreFilmRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        $film = Film::create($validatedData);
+        return response()->json($film, 200);
+
     }
 
     /**
@@ -37,7 +41,7 @@ class FilmController extends Controller
      */
     public function show(Film $film)
     {
-        //
+        return response()->json($film, 200);
     }
 
     /**

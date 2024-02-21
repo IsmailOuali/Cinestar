@@ -18,4 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get("/test", [FilmController::class, "index"]);
+Route::get("/films", [FilmController::class, "index"]);
+Route::post("/films", [FilmController::class, "store"]);
+Route::get("/films{film:title}", [FilmController::class, "show"]);

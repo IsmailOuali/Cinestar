@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Film extends Model
 {
@@ -12,21 +13,26 @@ class Film extends Model
     protected $fillable = [
         "title",
         "description",
-        "release_date",
         "screening_date",
+        "genre",
+        "year",
         "duration",
+        "country",
+        "language",
+        "actors",
         "category_id",
         "room_id",
     ];
-    protected $with = ["category", "room", "image"];
+    protected $with = ["category"];
 
-    public function category(){
+    public function category(): BelongsTo
+    {
         return $this->belongsTo(Category::class);
     }
-    public function room(){
-        return $this->belongsTo(Room::class);
-    }
-    public function image(){
-        return $this->morphOne(Image::class, "imageable");
-    }
+//    public function room(){
+//        return $this->belongsTo(Room::class);
+//    }
+//    public function image(){
+//        return $this->morphOne(Image::class, "imageable");
+//    }
 }

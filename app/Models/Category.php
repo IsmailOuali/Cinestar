@@ -15,15 +15,14 @@ class Category extends Model
         "name",
         "description"
     ];
-    protected $with = ["films", "image"];
 
-    public function films(): HasMany
+    public function films()
     {
         return $this->hasMany(Film::class);
     }
-
-    public function image(): MorphOne
-    {
-        return $this->morphOne(Image::class, "imageable");
-    }
+//
+//    public function image(): MorphOne
+//    {
+//        return $this->morphOne(Image::class, "imageable");
+//    }
 }

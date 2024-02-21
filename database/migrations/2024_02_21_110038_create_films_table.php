@@ -17,7 +17,11 @@ return new class extends Migration
             $table->string("title");
             $table->text("description");
             $table->string("duration");
-            $table->date("release_date");
+            $table->date("year");
+            $table->string("country");
+            $table->string("language");
+            $table->string("genre");
+            $table->text("actors");
             $table->date("screening_date");
             $table->foreignId("category_id")
                 ->constrained("categories");

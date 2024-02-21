@@ -19,13 +19,21 @@ class FilmFactory extends Factory
     public function definition(): array
     {
         $faker = $this->faker;
+
+        $words = $faker->words(7);
+        $actors = implode(', ', $words);
+
         $categories = Category::pluck("id")->toArray();
         $rooms = Room::pluck("id")->toArray();
         return [
             "title" => $faker->sentence,
             "description" => $faker->text,
-            "release_date" => $faker->date,
+            "year" => $faker->date,
             "duration" => $faker->duration,
+            "country" => $faker->country,
+            "language" => $faker->country,
+            "genre" => $faker->word,
+            "actors" => $actors,
             "screening_date" => $faker->date,
             "category_id" => $faker->randomElement($categories),
             "room_id" => $faker->randomElement($rooms),
