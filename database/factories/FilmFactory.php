@@ -25,6 +25,7 @@ class FilmFactory extends Factory
             "title" => $faker->sentence,
             "description" => $faker->text,
             "release_date" => $faker->date,
+            "duration" => $faker->duration,
             "screening_date" => $faker->date,
             "category_id" => $faker->randomElement($categories),
             "room_id" => $faker->randomElement($rooms),

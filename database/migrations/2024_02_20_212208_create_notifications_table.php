@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("header");
             $table->text("body");
             $table->foreignId("member_id")
-                ->constrained("members", "member_id");
+                ->constrained("users");
             $table->timestamps();
         });
     }

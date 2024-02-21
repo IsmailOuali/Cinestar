@@ -21,7 +21,7 @@ return new class extends Migration
                 ->constrained("seats");
             $table->timestamps();
 
-            $table->foreign('member_id')->references('member_id')->on('members');
+            $table->foreign('member_id')->references('id')->on('users');
         });
     }
 
