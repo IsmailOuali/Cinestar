@@ -60,7 +60,7 @@ class FilmController extends Controller
         $validatedData = $request->validated();
         $film->fill($validatedData);
         $film->save();
-        return view ("");
+        return redirect()->back()->with("success", "Film Updated successfully");
     }
 
     /**
@@ -69,6 +69,6 @@ class FilmController extends Controller
     public function destroy(Film $film)
     {
         $film->delete();
-        return view ("");
+        return redirect()->back()->with("success", "Film deleted successfully");
     }
 }
