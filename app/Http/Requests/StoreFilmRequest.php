@@ -33,6 +33,7 @@ class StoreFilmRequest extends FormRequest
             "genre" => "required",
             "category_id" => "required",
             "room_id" => "required",
+            "image" => "required|image",
         ];
     }
 }

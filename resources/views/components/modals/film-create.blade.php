@@ -1,7 +1,7 @@
 <!-- Main modal -->
 <div id="crud-modal" tabindex="-1" aria-hidden="true"
      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-md max-h-full">
+    <div class="relative p-4 w-full max-w-4xlxl max-h-full">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow">
             <!-- Modal header -->
@@ -21,21 +21,23 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5">
-                <div class="grid gap-4 mb-4 grid-cols-2">
+            <form action="{{ route("film-store") }}" method="post" class="p-4 md:p-5" enctype="multipart/form-data">
+                @csrf
+                <div class="flex flex-col gap-4 mb-4 ">
                     <x-inputs.n-input name="title" type="text" placeholder="Enter the Film title !! "/>
+                    <x-inputs.n-input name="genre" type="text" placeholder="Eg: comedy, action ...."/>
+                    <x-inputs.n-input name="actors" type="text" placeholder="Eg: jhon snow, akil salah, aymane "/>
                     <x-inputs.n-input name="duration" type="time"/>
-                    <div class="flex justify-between">
+                    <div class="flex justify-around">
                         <x-inputs.n-input name="year" type="date"/>
                         <x-inputs.n-input name="screening_date" type="date"/>
+                        <x-inputs.select-loop name="category_id" :data="$data['categories']" />
+                        <x-inputs.select-loop name="room_id" :data="$data['rooms']" />
+                        <x-inputs.select-enum name="country" :enum="App\Enums\Countries::cases()"/>
+                        <x-inputs.select-enum name="language" :enum="App\Enums\Language::cases()"/>
                     </div>
-                    <div class="col-span-2">
-                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Product
-                            Description</label>
-                        <textarea id="description" rows="4"
-                                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                  placeholder="Write product description here"></textarea>
-                    </div>
+                    <x-inputs.textarea name="description" label="description"/>
+                    <x-inputs.file name="image"/>
                 </div>
                 <button type="submit"
                         class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
@@ -45,7 +47,7 @@
                               d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                               clip-rule="evenodd"></path>
                     </svg>
-                    Add new product
+                    Add new Film
                 </button>
             </form>
         </div>

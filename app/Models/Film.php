@@ -32,7 +32,7 @@ class Film extends Model
     public function room(){
         return $this->belongsTo(Room::class);
     }
-//    public function image(){
-//        return $this->morphOne(Image::class, "imageable");
-//    }
+    public function image(){
+        return $this->morphOne(Image::class, "imageable");
+    }
 }

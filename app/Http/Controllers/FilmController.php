@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
+use App\Models\Category;
 use App\Models\Film;
+use App\Models\Room;
+use App\Services\ImageService;
+use Illuminate\Http\Request;
 
 class FilmController extends Controller
 {
+    private $imageService;
+    public function __construct (ImageService $imageService){
+        $this->imageService = $imageService;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -15,9 +23,12 @@ class FilmController extends Controller
     {
         return view("admin.films", [
             "films" => Film::paginate(7),
+            "data" => [
+                "categories" => Category::all(),
+                "rooms" => Room::all(),
+            ]
         ]);
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -25,7 +36,9 @@ class FilmController extends Controller
     {
         $validatedData = $request->validated();
         $film = Film::create($validatedData);
-        return view ("");
+        $imageName = $this->imageService->move($request->file("image"));
+        $film->image()->create(["path" => $imageName]);
+        return redirect()->back();
 
     }
 
