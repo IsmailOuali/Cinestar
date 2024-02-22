@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Faker\Factory;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $faker = Factory::create();
+        $faker->addProvider(new FakeServiceProvider($faker));
     }
 }
