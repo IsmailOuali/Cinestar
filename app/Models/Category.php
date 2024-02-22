@@ -20,9 +20,9 @@ class Category extends Model
     {
         return $this->hasMany(Film::class);
     }
-//
-//    public function image(): MorphOne
-//    {
-//        return $this->morphOne(Image::class, "imageable");
-//    }
+
+    public function image(): MorphOne
+    {
+        return $this->morphOne(Image::class, "imageable");
+    }
 }

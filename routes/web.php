@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FilmController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return "jljljl";
+    return "still in the backlog";
 });
+Route::get("/dashboard/categories", [CategoryController::class, "index"])->name("admin-categories");
+Route::post("/dashboard/categories", [CategoryController::class, "store"])->name("category-store");
+Route::put("/dashboard/categories/{category:name}", [CategoryController::class, "update"])->name("category-update");
+Route::delete("/dashboard/categories/{category:name}", [CategoryController::class, "destroy"])->name("category-delete");
 
-Route::get("/dashboard/films", [FilmController::class, "index"])->name("admin-films");
-Route::post("/dashboard/films", [FilmController::class, "store"])->name("film-store");
-Route::put("/dashboard/films/{film:title}", [FilmController::class, "update"])->name("film-update");
-Route::delete("/dashboard/films/{film:title}", [FilmController::class, "destroy"])->name("film-delete");
+
+
+require_once __DIR__ . "/admin.php";

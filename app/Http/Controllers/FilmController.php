@@ -13,9 +13,12 @@ use Illuminate\Http\Request;
 class FilmController extends Controller
 {
     private $imageService;
-    public function __construct (ImageService $imageService){
+
+    public function __construct(ImageService $imageService)
+    {
         $this->imageService = $imageService;
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -29,6 +32,7 @@ class FilmController extends Controller
             ]
         ]);
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -39,7 +43,6 @@ class FilmController extends Controller
         $imageName = $this->imageService->move($request->file("image"));
         $film->image()->create(["path" => $imageName]);
         return redirect()->back();
-
     }
 
     /**
@@ -49,6 +52,10 @@ class FilmController extends Controller
     {
         $validatedData = $request->validated();
         $film->update($validatedData);
+        if ($request->hasFile("image")) {
+            $imageName = $this->imageService->move($request->file("image"));
+            $film->image()->update(["path" => $imageName]);
+        }
         return redirect()->back()->with("success", "Film Updated successfully");
     }
 
