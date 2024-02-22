@@ -17,7 +17,9 @@
                     <strong>{{ count($films) }}</strong> medicines
                 </p>
             </div>
-            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85]  flex items-center gap-4 px-4 capitalize" type="button">
+            <button data-modal-target="film-create" data-modal-toggle="film-create"
+                    class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85]  flex items-center gap-4 px-4 capitalize"
+                    type="button">
                 Create Film
             </button>
 
@@ -48,7 +50,8 @@
                             </div>
                             {{--                            {{ asset('storage/' . $film->image->path ?? null) }}--}}
                         </td>
-                        <x-elements.td class="leading-normal text-blue-red-900 font-bold">{{ $film->title }}</x-elements.td>
+                        <x-elements.td
+                            class="leading-normal text-blue-red-900 font-bold">{{ $film->title }}</x-elements.td>
                         <x-elements.td>{{ $film->description }}</x-elements.td>
                         <x-elements.td>{{ $film->duration }}</x-elements.td>
                         <x-elements.td>{{ $film->room->name }}</x-elements.td>
@@ -57,16 +60,27 @@
                         <x-elements.td>{{ $film->country }}</x-elements.td>
                         <x-elements.td>{{ $film->language }}</x-elements.td>
                         <td class="py-3 px-5 border-b border-blue-gray-50 flex items-center gap-2">
-                            <button data-film-name="{{ $film->title }}"
-                                    data-film-price="{{ $film->description }}"
-                                    data-film-id="{{ $film->id }}" data-modal-target="edit-modal-film"
-                                    data-modal-toggle="edit-modal-film"
-                                    data-film-description="{{ $film->description }}"
-                                    class=" bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
-                                    type="button">
+                            <button
+                                data-id="{{ $film->id }}"
+                                data-title="{{ $film->title }}"
+                                data-description="{{ $film->description }}"
+                                data-genre="{{ $film->genre }}"
+                                data-actors="{{ $film->actors }}"
+                                data-duration="{{ $film->duration }}"
+                                data-year="{{ $film->year }}"
+                                data-screening_date="{{ $film->screening_date }}"
+                                data-category="{{ $film->category_id }}"
+                                data-room="{{ $film->room_id }}"
+                                data-country="{{ $film->country }}"
+                                data-language="{{ $film->language }}"
+                                data-modal-target="film-edit"
+                                data-modal-toggle="film-edit"
+                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
+                                type="button">
                                 <x-icon name="edit"/>
                             </button>
-                            {{--                            <x-modals.update-film :medicine="$film" />--}}
+
+                            <x-modals.film-update :data="$data" :title="$film->title"/>
                             <form action="{{ route('film-delete', $film->title) }}" method="post">
                                 @method('delete')
                                 @csrf

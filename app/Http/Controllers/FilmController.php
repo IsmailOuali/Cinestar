@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreFilmRequest;
+use App\Http\Requests\FilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
 use App\Models\Category;
 use App\Models\Film;
@@ -32,7 +32,7 @@ class FilmController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFilmRequest $request)
+    public function store(FilmRequest $request)
     {
         $validatedData = $request->validated();
         $film = Film::create($validatedData);
@@ -43,23 +43,12 @@ class FilmController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Film $film)
-    {
-        return view("", [
-            "film" => $film,
-        ]);
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFilmRequest $request, Film $film)
+    public function update(FilmRequest $request, Film $film)
     {
         $validatedData = $request->validated();
-        $film->fill($validatedData);
-        $film->save();
+        $film->update($validatedData);
         return redirect()->back()->with("success", "Film Updated successfully");
     }
 
