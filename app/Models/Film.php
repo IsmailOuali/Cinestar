@@ -23,15 +23,15 @@ class Film extends Model
         "category_id",
         "room_id",
     ];
-    protected $with = ["category"];
+    protected $with = ["category", "room"];
 
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
-//    public function room(){
-//        return $this->belongsTo(Room::class);
-//    }
+    public function room(){
+        return $this->belongsTo(Room::class);
+    }
 //    public function image(){
 //        return $this->morphOne(Image::class, "imageable");
 //    }

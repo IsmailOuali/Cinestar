@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return "jljljl";
 });
-Route::get("/films", [FilmController::class, "index"]);
+
+Route::get("/dashboard/films", [FilmController::class, "index"])->name("admin-films");
+Route::post("/dashboard/films", [FilmController::class, "store"])->name("film-store");
+Route::delete("/dashboard/films{film:title}", [FilmController::class, "destroy"])->name("film-delete");

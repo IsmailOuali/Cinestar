@@ -13,16 +13,9 @@ class FilmController extends Controller
      */
     public function index()
     {
-        $films = Film::all();
-        return response()->json($films, 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-
+        return view("admin.films", [
+            "films" => Film::paginate(7),
+        ]);
     }
 
     /**
@@ -32,7 +25,7 @@ class FilmController extends Controller
     {
         $validatedData = $request->validated();
         $film = Film::create($validatedData);
-        return response()->json($film, 200);
+        return view ("");
 
     }
 
@@ -41,15 +34,9 @@ class FilmController extends Controller
      */
     public function show(Film $film)
     {
-        return response()->json($film, 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Film $film)
-    {
-        //
+        return view("", [
+            "film" => $film,
+        ]);
     }
 
     /**
@@ -57,7 +44,10 @@ class FilmController extends Controller
      */
     public function update(UpdateFilmRequest $request, Film $film)
     {
-        //
+        $validatedData = $request->validated();
+        $film->fill($validatedData);
+        $film->save();
+        return view ("");
     }
 
     /**
@@ -65,6 +55,7 @@ class FilmController extends Controller
      */
     public function destroy(Film $film)
     {
-        //
+        $film->delete();
+        return view ("");
     }
 }
