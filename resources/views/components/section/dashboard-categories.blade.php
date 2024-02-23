@@ -55,14 +55,14 @@
                                 data-modal-toggle="category-edit"
                                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
                                 type="button">
-                                <x-icon name="edit"/>
+                                <x-svg-icon name="edit"/>
                             </button>
                             <x-modals.category-update :name="$category->name"/>
                             <form action="{{ route('category-delete', $category->name) }}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button>
-                                    <x-icon name="delete"/>
+                                    <x-svg-icon name="delete"/>
                                 </button>
                             </form>
                         </td>

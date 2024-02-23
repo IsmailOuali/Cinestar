@@ -14,7 +14,7 @@
                         Appointement</a>
                 </li>
                 <li id="favorite-btn" class="hover:cursor-pointer">
-                    <x-icon name="heart"/>
+                    <x-svg-icon name="heart"/>
                 </li>
                 <li>
                     <a href="">

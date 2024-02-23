@@ -77,7 +77,7 @@
                                 data-modal-toggle="film-edit"
                                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
                                 type="button">
-                                <x-icon name="edit"/>
+                                <x-svg-icon name="edit"/>
                             </button>
 
                             <x-modals.film-update :data="$data" :title="$film->title"/>
@@ -85,7 +85,7 @@
                                 @method('delete')
                                 @csrf
                                 <button>
-                                    <x-icon name="delete"/>
+                                    <x-svg-icon name="delete"/>
                                 </button>
                             </form>
                         </td>

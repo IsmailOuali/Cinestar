@@ -21,8 +21,8 @@ Route::get('/', function () {
 });
 Route::get("/dashboard/categories", [CategoryController::class, "index"])->name("admin-categories");
 Route::post("/dashboard/categories", [CategoryController::class, "store"])->name("category-store");
-Route::put("/dashboard/categories/{category:name}", [CategoryController::class, "update"])->name("category-update");
-Route::delete("/dashboard/categories/{category:name}", [CategoryController::class, "destroy"])->name("category-delete");
+Route::put("/dashboard/categories/{category}", [CategoryController::class, "update"])->name("category-update");
+Route::delete("/dashboard/categories/{category}", [CategoryController::class, "destroy"])->name("category-delete");
 
 
 
