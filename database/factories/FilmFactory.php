@@ -34,9 +34,7 @@ class FilmFactory extends Factory
             "language" => $faker->country,
             "genre" => $faker->word,
             "actors" => $actors,
-            "screening_date" => $faker->date,
             "category_id" => $faker->randomElement($categories),
-            "room_id" => $faker->randomElement($rooms),
         ];
     }
 }

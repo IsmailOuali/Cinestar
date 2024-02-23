@@ -6,8 +6,8 @@ use App\Http\Requests\FilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
 use App\Models\Category;
 use App\Models\Film;
-use App\Models\Room;
 use App\Services\ImageService;
+use Illuminate\Http\Request;
 
 class FilmController extends Controller
 {
@@ -27,7 +27,6 @@ class FilmController extends Controller
             "films" => Film::paginate(7),
             "data" => [
                 "categories" => Category::all(),
-                "rooms" => Room::all(),
             ]
         ]);
     }

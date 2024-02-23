@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTicketRequest extends FormRequest
+class RoomRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreTicketRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required",
+            "image" => "required|image",
+            "names" => "required|array",
+            "number_of_seats" => "required|array",
+            "prices" => "required|array",
         ];
     }
 }

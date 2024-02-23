@@ -22,11 +22,8 @@ return new class extends Migration {
             $table->string("language");
             $table->string("genre");
             $table->text("actors");
-            $table->date("screening_date");
             $table->foreignId("category_id")
                 ->constrained("categories")->cascadeOnDelete();
-            $table->foreignId("room_id")
-                ->constrained("rooms");
             $table->timestamps();
         });
     }

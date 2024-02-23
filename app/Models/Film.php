@@ -17,7 +17,6 @@ class Film extends Model
     protected $fillable = [
         "title",
         "description",
-        "screening_date",
         "genre",
         "year",
         "duration",
@@ -25,12 +24,11 @@ class Film extends Model
         "language",
         "actors",
         "category_id",
-        "room_id",
     ];
     /**
      * @var string[]
      */
-    protected $with = ["category", "room"];
+    protected $with = ["category"];
 
     /**
      * @return BelongsTo
@@ -38,14 +36,6 @@ class Film extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function room()
-    {
-        return $this->belongsTo(Room::class);
     }
 
     /**

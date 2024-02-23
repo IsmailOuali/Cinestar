@@ -28,7 +28,6 @@
                     <x-elements.th>Title</x-elements.th>
                     <x-elements.th>Description</x-elements.th>
                     <x-elements.th>Duration</x-elements.th>
-                    <x-elements.th>Room</x-elements.th>
                     <x-elements.th>Category</x-elements.th>
                     <x-elements.th>Genre</x-elements.th>
                     <x-elements.th>Country</x-elements.th>
@@ -50,7 +49,6 @@
                             class="leading-normal text-blue-red-900 font-bold">{{ $film->title }}</x-elements.td>
                         <x-elements.td>{{ $film->description }}</x-elements.td>
                         <x-elements.td>{{ $film->duration }}</x-elements.td>
-                        <x-elements.td>{{ $film->room->name }}</x-elements.td>
                         <x-elements.td>{{ $film->category->name }}</x-elements.td>
                         <x-elements.td>{{ $film->genre }}</x-elements.td>
                         <x-elements.td>{{ $film->country }}</x-elements.td>
