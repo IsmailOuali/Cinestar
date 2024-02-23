@@ -17,11 +17,7 @@
                     <strong>{{ count($films) }}</strong> medicines
                 </p>
             </div>
-            <button data-modal-target="film-create" data-modal-toggle="film-create"
-                    class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85]  flex items-center gap-4 px-4 capitalize"
-                    type="button">
-                Create Film
-            </button>
+            <x-modals.button modalId="film-create">Create Film</x-modals.button>
 
         </div>
         <div class="p-6 overflow-x-scroll px-0 pt-0 pb-2">

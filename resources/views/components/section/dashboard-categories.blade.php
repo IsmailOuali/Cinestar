@@ -17,11 +17,7 @@
                     <strong>{{ count($categories) }}</strong> medicines
                 </p>
             </div>
-            <button data-modal-target="category-create" data-modal-toggle="category-create"
-                    class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85]  flex items-center gap-4 px-4 capitalize"
-                    type="button">
-                Create Category
-            </button>
+            <x-modals.button modalId="category-create" style="true">Create Category</x-modals.button>
 
         </div>
         <div class="p-6 overflow-x-scroll px-0 pt-0 pb-2">
@@ -58,13 +54,11 @@
                                 <x-svg-icon name="edit"/>
                             </button>
                             <x-modals.category-update :slug="$category->slug"/>
-                            <form action="{{ route('categories.destroy', $category->slug) }}" method="post">
-                                @method('delete')
-                                @csrf
-                                <button>
-                                    <x-svg-icon name="delete"/>
-                                </button>
-                            </form>
+
+                            <x-modals.button modalId="category-delete">
+                                <x-svg-icon name="delete"/>
+                            </x-modals.button>
+                            <x-modals.category-delete :slug="$category->slug"/>
                         </td>
                     </tr>
                 @endforeach
