@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('provider_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->unique("id");
         });
     }
 
