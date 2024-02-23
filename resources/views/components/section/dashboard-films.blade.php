@@ -81,7 +81,7 @@
                             </button>
 
                             <x-modals.film-update :data="$data" :slug="$film->slug"/>
-                            <form action="{{ route('film-delete', $film->slug) }}" method="post">
+                            <form action="{{ route('films.destroy', $film->slug) }}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button>

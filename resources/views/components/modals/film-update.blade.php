@@ -1,7 +1,7 @@
 @props(["slug", "data"])
 <x-modals.modal modalId="film-edit" modalTitle="Update Film" width="max-w-4xlxl">
     <!-- Modal body -->
-    <form action="{{ route("film-update", $slug) }}" method="post" class="p-4 md:p-5" enctype="multipart/form-data">
+    <form action="{{ route("films.update", $slug) }}" method="post" class="p-4 md:p-5" enctype="multipart/form-data">
         @method("put")
         @csrf
         <div class="flex flex-col gap-4 mb-4 ">

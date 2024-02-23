@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\RoomController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -19,11 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return "still in the backlog";
 });
-Route::get("/dashboard/categories", [CategoryController::class, "index"])->name("admin-categories");
-Route::post("/dashboard/categories", [CategoryController::class, "store"])->name("category-store");
-Route::put("/dashboard/categories/{category}", [CategoryController::class, "update"])->name("category-update");
-Route::delete("/dashboard/categories/{category}", [CategoryController::class, "destroy"])->name("category-delete");
 
+Route::resource("/dashboard/categories", CategoryController::class);
+Route::resource("/dashboard/films", FilmController::class);
+Route::resource("/dashboard/rooms", RoomController::class);
 
-
-require_once __DIR__ . "/admin.php";

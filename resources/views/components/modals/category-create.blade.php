@@ -1,5 +1,5 @@
 <x-modals.modal modalId="category-create" modalTitle="Create Film" width="max-w-xl">
-    <form action="{{ route("category-store") }}" method="post" class="p-4 md:p-5" enctype="multipart/form-data">
+    <form action="{{ route("categories.store") }}" method="post" class="p-4 md:p-5" enctype="multipart/form-data">
         @csrf
         <div class="flex flex-col gap-4 mb-4 ">
             <x-inputs.n-input name="name" type="text" placeholder="Enter the Category name !! "/>

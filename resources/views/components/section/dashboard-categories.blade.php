@@ -58,7 +58,7 @@
                                 <x-svg-icon name="edit"/>
                             </button>
                             <x-modals.category-update :slug="$category->slug"/>
-                            <form action="{{ route('category-delete', $category->slug) }}" method="post">
+                            <form action="{{ route('categories.destroy', $category->slug) }}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button>

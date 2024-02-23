@@ -8,7 +8,6 @@ use App\Models\Category;
 use App\Models\Film;
 use App\Models\Room;
 use App\Services\ImageService;
-use Illuminate\Http\Request;
 
 class FilmController extends Controller
 {
@@ -40,15 +39,17 @@ class FilmController extends Controller
     {
         $validatedData = $request->validated();
         $film = Film::create($validatedData);
-        $imageName = $this->imageService->move($request->file("image"));
-        $film->image()->create(["path" => $imageName]);
+        if ($request->hasFile("image")) {
+            $imageName = $this->imageService->move($request->file("image"));
+            $film->image()->create(["path" => $imageName]);
+        }
         return redirect()->back();
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(FilmRequest $request, Film $film)
+    public function update(UpdateFilmRequest $request, Film $film)
     {
         $validatedData = $request->validated();
         $film->update($validatedData);
