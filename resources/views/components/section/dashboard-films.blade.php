@@ -80,8 +80,8 @@
                                 <x-svg-icon name="edit"/>
                             </button>
 
-                            <x-modals.film-update :data="$data" :title="$film->title"/>
-                            <form action="{{ route('film-delete', $film->title) }}" method="post">
+                            <x-modals.film-update :data="$data" :slug="$film->slug"/>
+                            <form action="{{ route('film-delete', $film->slug) }}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button>

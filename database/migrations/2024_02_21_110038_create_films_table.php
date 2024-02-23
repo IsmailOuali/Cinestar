@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->text("actors");
             $table->date("screening_date");
             $table->foreignId("category_id")
-                ->constrained("categories");
+                ->constrained("categories")->cascadeOnDelete();
             $table->foreignId("room_id")
                 ->constrained("rooms");
             $table->timestamps();
