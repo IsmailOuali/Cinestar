@@ -96,5 +96,10 @@
               d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
               clip-rule="evenodd"></path>
     </svg>
-
+@elseif($name === "more-details")
+    <span
+            class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-blye-500 group-hover:translate-x-0 ease">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path
+            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+    </span>
 @endif

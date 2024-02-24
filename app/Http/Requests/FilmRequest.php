@@ -23,17 +23,15 @@ class FilmRequest extends FormRequest
     {
         return [
             "title" => "required",
-            "description" => "required",
+            "genre" => "required",
+            "actors" => "required",
             "duration" => "required",
             "year" => "required",
-            "screening_date" => "required",
-            "actors" => "required",
-            "language" => "required",
-            "country" => "required",
-            "genre" => "required",
             "category_id" => "required",
-            "room_id" => "required",
-            "image" => "required|image",
+            "country" => "required",
+            "language" => "required",
+            "description" => "required",
+            "image" => "required",
         ];
     }
 }

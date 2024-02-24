@@ -2,58 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreZoneRequest;
+use App\Http\Requests\CreateZoneRequest;
 use App\Http\Requests\UpdateZoneRequest;
 use App\Models\Zone;
 
 class ZoneController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreZoneRequest $request)
+    public function store(CreateZoneRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        Zone::create($validatedData);
+        return redirect()->back()->with("success", "zone created successfully");
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Zone $zone)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Zone $zone)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateZoneRequest $request, Zone $zone)
     {
-        //
+        $validatedData = $request->validated();
+        $zone->update($validatedData);
+        return redirect()->back()->with("success", "zone update successfully");
     }
 
     /**
@@ -61,6 +32,7 @@ class ZoneController extends Controller
      */
     public function destroy(Zone $zone)
     {
-        //
+        $zone->delete();
+        return redirect()->back()->with("success", "zone deleted successfully");
     }
 }

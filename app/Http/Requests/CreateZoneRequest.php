@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTicketRequest extends FormRequest
+class CreateZoneRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreTicketRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required",
+            "number_of_seats" => "required",
+            "price" => "required",
+            "room_id" => "required"
         ];
     }
 }

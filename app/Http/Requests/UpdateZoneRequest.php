@@ -11,7 +11,7 @@ class UpdateZoneRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateZoneRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required",
+            "number_of_seats" => "required",
+            "price" => "required",
         ];
     }
 }
