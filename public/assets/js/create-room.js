@@ -3,10 +3,10 @@ const zoneDetailsContainer = document.querySelector("#zone-container")
 const inputGroups = document.querySelector("#input-groups");
 let counter = 0;
 addRoomBtn.addEventListener("click", (event) => {
+    counter++;
     zoneDetailsContainer.classList.remove("hidden");
     let zoneInput = document.createElement("div");
     zoneInput.classList.add("flex", "flex-col", "gap-2")
-    counter++;
     zoneInput.innerHTML = `<h5 class="font-bold text-xl mt-2.5">Zone N°: ${counter} </h5>` +
         '<label for="name">zone name</label>' +
         '<input class="p-2.5 border-2 rounded-xl" name="names[]" placeholder="enter zone name">' +
