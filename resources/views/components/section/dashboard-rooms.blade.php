@@ -1,39 +1,42 @@
-<section>
+<section class="">
     <div class="flex justify-between mb-12">
         <div class="">
             <h1 class="text-2xl font-bold">
-                Rooms managementa
+                Rooms management
             </h1>
         </div>
         <x-modals.button modalId="room-create">
             Create New Room
         </x-modals.button>
     </div>
-    <div class="rooms flex justify-between gap-2 flex-wrap">
+    <div class="rooms flex justify-center gap-2 flex-wrap">
+        <x-helpers.empty-rooms :rooms="$rooms"/>
         @foreach($rooms as $room)
             <div
-                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+                class="w-[400px] mx-4 bg-white border border-gray-200 rounded-lg shadow">
                 <a href="#">
-                    <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt=""/>
+                    <img class="rounded-t-lg w-full h-72"
+                         src="{{isset($room->image->path) ? asset("storage/".$room->image->path): ""}}" alt=""/>
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                             {{ $room->name }}</h5>
                     </a>
-                    <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise
-                        technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                    <a href="#"
-                       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                        Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                  stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
+                    <p class="font-bold border-2 rounded-full w-fit px-4 my-4">{{ count($room->zones) }} Zones</p>
+                    <a href="{{ route("rooms.show", $room->slug) }}"
+                       class="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-blue-500 rounded-full shadow-md group">
+                         <x-svg-icon name="more-details"/>
+                        <span
+                            class="absolute flex items-center justify-center w-full h-full text-blue-500 transition-all duration-300 transform group-hover:translate-x-full ease">More Details</span>
+                        <span class="relative invisible">More Details</span>
                     </a>
                 </div>
             </div>
         @endforeach
+
+    </div>
+    <div class="block">
+        {{ $rooms->links() }}
     </div>
 </section>

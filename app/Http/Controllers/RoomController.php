@@ -21,7 +21,7 @@ class RoomController extends Controller
     public function index()
     {
         return view ("admin.rooms", [
-            "rooms" => Room::paginate(7),
+            "rooms" => Room::paginate(6),
         ]);
     }
 
@@ -35,6 +35,8 @@ class RoomController extends Controller
         $imageName = $this->imageService->move($request->file("image"));
         $room->image()->create(["path" => $imageName]);
         $this->zoneService->storeRoomZones($room, $validateDdata);
+
+        return redirect()->back()->with("success", "room created successfully");
     }
 
     /**
@@ -42,7 +44,9 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
+        return view ("admin.single-room", [
+            "room" => $room
+        ]);
     }
 
     /**
