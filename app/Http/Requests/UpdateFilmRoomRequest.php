@@ -11,7 +11,7 @@ class UpdateFilmRoomRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateFilmRoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "screening_date" => "required",
+            "room_id" => "required"
         ];
     }
 }

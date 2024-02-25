@@ -5,6 +5,7 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
@@ -12,9 +13,7 @@ class Room extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $fillable = ["name"];
-    protected $with = ["image", "zones"];
-
+    protected $fillable = ["name", "seats_total"];
     public function zones(): HasMany
     {
         return $this->hasMany(Zone::class);
@@ -46,4 +45,10 @@ class Room extends Model
             ]
         ];
     }
+
+    public function filmRooms()
+    {
+        return $this->hasMany(FilmRoom::class);
+    }
+
 }

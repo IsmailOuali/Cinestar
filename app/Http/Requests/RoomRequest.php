@@ -24,6 +24,7 @@ class RoomRequest extends FormRequest
         return [
             "name" => "required",
             "image" => "required|image",
+            "seats_total" => "required",
             "names" => "required|array",
             "number_of_seats" => "required|array",
             "prices" => "required|array",

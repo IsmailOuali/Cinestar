@@ -6,6 +6,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Film extends Model
 {
@@ -25,27 +26,6 @@ class Film extends Model
         "actors",
         "category_id",
     ];
-    /**
-     * @var string[]
-     */
-    protected $with = ["category"];
-
-    /**
-     * @return BelongsTo
-     */
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
-     */
-    public function image()
-    {
-        return $this->morphOne(Image::class, "imageable");
-    }
-
     /**
      * Get the route key for the model.
      */
@@ -68,4 +48,25 @@ class Film extends Model
         ];
 
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, "imageable");
+    }
+    public function filmRooms()
+    {
+        return $this->hasMany(FilmRoom::class);
+    }
+
 }
