@@ -41,8 +41,12 @@ class FilmRoomController extends Controller
      */
     public function update(UpdateFilmRoomRequest $request, FilmRoom $filmRoom)
     {
-        dd($filmRoom);
         $validatedData = $request->validated();
+        $filmRoom->update([
+            "room_id" => $validatedData['room_id'],
+            "screening_date" => $validatedData["screening_date"]
+        ]);
+        return redirect()->back()->with("success", "schedule updated successfullyw");
     }
 
     /**

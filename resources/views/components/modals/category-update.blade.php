@@ -1,6 +1,6 @@
 <x-modals.modal modalId="category-edit" modalTitle="Create Film" width="max-w-xl">
     <!-- Modal body -->
-    <form action="{{ route("categories.update", $slug) }}" method="post" class="p-4 md:p-5" enctype="multipart/form-data">
+    <form id="category-update" method="post" class="p-4 md:p-5" enctype="multipart/form-data">
         @method("put")
         @csrf
         <div class="flex flex-col gap-4 mb-4 ">

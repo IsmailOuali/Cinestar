@@ -57,6 +57,7 @@
                             <button
                                 data-id="{{ $film->id }}"
                                 data-title="{{ $film->title }}"
+                                data-slug="{{ $film->slug }}"
                                 data-description="{{ $film->description }}"
                                 data-genre="{{ $film->genre }}"
                                 data-actors="{{ $film->actors }}"
