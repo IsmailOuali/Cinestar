@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('zones', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("slug");
             $table->string("price");
+            $table->integer("number_of_seats");
             $table->foreignId("room_id")
                 ->constrained("rooms");
             $table->timestamps();

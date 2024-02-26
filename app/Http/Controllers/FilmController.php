@@ -6,29 +6,31 @@ use App\Http\Requests\FilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
 use App\Models\Category;
 use App\Models\Film;
-use App\Models\Room;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
 
 class FilmController extends Controller
 {
     private $imageService;
-    public function __construct (ImageService $imageService){
+
+    public function __construct(ImageService $imageService)
+    {
         $this->imageService = $imageService;
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         return view("admin.films", [
-            "films" => Film::paginate(7),
+            "films" => Film::with("category", "image")->paginate(10),
             "data" => [
                 "categories" => Category::all(),
-                "rooms" => Room::all(),
             ]
         ]);
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -36,19 +38,24 @@ class FilmController extends Controller
     {
         $validatedData = $request->validated();
         $film = Film::create($validatedData);
-        $imageName = $this->imageService->move($request->file("image"));
-        $film->image()->create(["path" => $imageName]);
+        if ($request->hasFile("image")) {
+            $imageName = $this->imageService->move($request->file("image"));
+            $film->image()->create(["path" => $imageName]);
+        }
         return redirect()->back();
-
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(FilmRequest $request, Film $film)
+    public function update(UpdateFilmRequest $request, Film $film)
     {
         $validatedData = $request->validated();
         $film->update($validatedData);
+        if ($request->hasFile("image")) {
+            $imageName = $this->imageService->move($request->file("image"));
+            $film->image()->update(["path" => $imageName]);
+        }
         return redirect()->back()->with("success", "Film Updated successfully");
     }
 

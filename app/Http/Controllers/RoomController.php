@@ -2,34 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRoomRequest;
-use App\Http\Requests\UpdateRoomRequest;
+use App\Http\Requests\RoomRequest;
 use App\Models\Room;
+use App\Services\ImageService;
+use App\Services\ZoneService;
 
 class RoomController extends Controller
 {
+    private $zoneService;
+    private $imageService;
+    public function __construct (ImageService $imageService, ZoneService $zoneService){
+        $this->imageService = $imageService;
+        $this->zoneService = $zoneService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view ("admin.rooms", [
+            "rooms" => Room::with("image", "zones")->paginate(6),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRoomRequest $request)
+    public function store(RoomRequest $request)
     {
-        //
+        $validateDdata = $request->validated();
+        $room = Room::create($validateDdata);
+        $imageName = $this->imageService->move($request->file("image"));
+        $room->image()->create(["path" => $imageName]);
+        $this->zoneService->storeRoomZones($room, $validateDdata);
+
+        return redirect()->back()->with("success", "room created successfully");
     }
 
     /**
@@ -37,21 +44,15 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Room $room)
-    {
-        //
+        return view ("admin.single-room", [
+            "room" => $room
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRoomRequest $request, Room $room)
+    public function update(RoomRequest $request, Room $room)
     {
         //
     }

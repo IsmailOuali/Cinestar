@@ -17,8 +17,6 @@ return new class extends Migration
             $table->integer("member_id");
             $table->foreignId("film_id")
                 ->constrained("films");
-            $table->foreignId("seat_id")
-                ->constrained("seats");
             $table->timestamps();
 
             $table->foreign('member_id')->references('id')->on('users');

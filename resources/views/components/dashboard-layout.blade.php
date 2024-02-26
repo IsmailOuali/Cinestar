@@ -24,7 +24,7 @@
     </div>
 </div>
 
-{{--<x-flash/>--}}
+<x-helpers.flash/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
 </body>

@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\FilmRoomController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ZoneController;
+use App\Models\Schedule;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +21,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return "jljljl";
+    return "still in the backlog";
 });
 
-Route::get("/dashboard/films", [FilmController::class, "index"])->name("admin-films");
-Route::post("/dashboard/films", [FilmController::class, "store"])->name("film-store");
-Route::put("/dashboard/films/{film:title}", [FilmController::class, "update"])->name("film-update");
-Route::delete("/dashboard/films/{film:title}", [FilmController::class, "destroy"])->name("film-delete");
+Route::resource("/dashboard/categories", CategoryController::class);
+Route::resource("/dashboard/films", FilmController::class);
+Route::resource("/dashboard/rooms", RoomController::class);
+Route::resource("/dashboard/rooms/zones", ZoneController::class);
+Route::resource("/dashboard/schedules", FilmRoomController::class)->parameters([
+    'schedules' => 'filmRoom',
+]);;
+
+
