@@ -6,7 +6,6 @@ use App\Http\Controllers\FilmRoomController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ZoneController;
-use App\Models\Category;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +28,8 @@ Route::resource("/dashboard/categories", CategoryController::class);
 Route::resource("/dashboard/films", FilmController::class);
 Route::resource("/dashboard/rooms", RoomController::class);
 Route::resource("/dashboard/rooms/zones", ZoneController::class);
-Route::resource("/dashboard/schedules", FilmRoomController::class);
+Route::resource("/dashboard/schedules", FilmRoomController::class)->parameters([
+    'schedules' => 'filmRoom',
+]);;
 
 

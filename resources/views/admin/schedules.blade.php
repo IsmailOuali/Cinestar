@@ -43,7 +43,6 @@
                             @endif
 
                             <td class="py-3 px-5 border-b border-blue-gray-50 flex items-center gap-2">
-
                                 <button
                                     data-name="{{ $schedule->room->name }}"
                                     data-modal-target="schedule-edit"
@@ -52,18 +51,37 @@
                                     type="button">
                                     <x-svg-icon name="edit"/>
                                 </button>
-
-                                <x-modals.button modalId="schedule-delete">
-                                    <x-svg-icon name="delete"/>
-                                </x-modals.button>
-                                <x-modals.schedule-delete :id="$schedule->id"/>
+                                <form action="{{ route("schedules.destroy", $schedule->id) }}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <p>{{ $schedule->id }}</p>
+                                    <button>
+                                        <x-svg-icon name="delete"/>
+                                    </button>
+                                </form>
                             </td>
-                        </tr>
-                            <x-modals.schedule-update :id="$schedule->id"
-                                                      :rooms="$data['rooms']"
-                                                      :screening_date="$schedule->screening_date"
-                                                      :room="$schedule->room"/>
 
+                        </tr>
+                        <x-modals.modal modalId="schedule-edit" modalTitle="Update the schedule" width="max-w-xl">
+                            @dump($schedule->id)
+                            <form action="{{ route("schedules.update", $schedule->id) }}" method="post" class="p-8 md:p-5">
+                                @method("put")
+                                @csrf
+                                <div class="flex flex-col gap-4 items-center">
+                                    <h2 class="font-bold text-xl">Change the date or the room of movie</h2>
+                                    <x-inputs.select-loop :data="$data['rooms']" name="room_id"/>
+                                    <div class="flex flex-col gap-2">
+                                        <label for="screening_date">Screening Date</label>
+                                        <input class="rounded-xl" id="screening_date" type="datetime-local" name="screening_date" value="{{ $schedule->screening_date }}">
+                                    </div>
+                                    <button type="submit"
+                                            class=" my-4 text-white inline-flex bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                        <x-svg-icon name="add"/>
+                                        Update Category
+                                    </button>
+                                </div>
+                            </form>
+                        </x-modals.modal>
                     @endforeach
                     </tbody>
                 </table>
