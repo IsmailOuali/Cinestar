@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSeatRequest;
-use App\Http\Requests\UpdateSeatRequest;
-use App\Models\Seat;
+use App\Http\Requests\StoreFilmRoomRequest;
+use App\Http\Requests\UpdateFilmRoomRequest;
+use App\Models\FilmRoom;
 
-class SeatController extends Controller
+class FilmRoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class SeatController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSeatRequest $request)
+    public function store(StoreFilmRoomRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class SeatController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Seat $seat)
+    public function show(FilmRoom $filmRoom)
     {
         //
     }
@@ -43,7 +43,7 @@ class SeatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Seat $seat)
+    public function edit(FilmRoom $filmRoom)
     {
         //
     }
@@ -51,7 +51,7 @@ class SeatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSeatRequest $request, Seat $seat)
+    public function update(UpdateFilmRoomRequest $request, FilmRoom $filmRoom)
     {
         //
     }
@@ -59,7 +59,7 @@ class SeatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Seat $seat)
+    public function destroy(FilmRoom $filmRoom)
     {
         //
     }

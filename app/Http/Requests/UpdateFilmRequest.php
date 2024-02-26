@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRoomRequest extends FormRequest
+class UpdateFilmRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class UpdateRoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+            "title" => "required",
+            "genre" => "required",
+            "actors" => "required",
+            "duration" => "required",
+            "year" => "required",
+            "category_id" => "required",
+            "country" => "required",
+            "language" => "required",
+            "description" => "required",
+            "image" => "",
+            ];
     }
 }

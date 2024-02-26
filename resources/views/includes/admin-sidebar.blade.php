@@ -1,4 +1,4 @@
-<aside
+    <aside
     class="bg-gradient-to-br from-gray-800 to-gray-900 -translate-x-80 fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0">
     <div class="relative border-b border-white/20">
         <a class="flex items-center gap-4 py-6 px-8" href="#/">
@@ -22,27 +22,35 @@
                 <a href="/dashboard"
                    class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
                    type="a">
-                    <x-icon name="dashboard"/>
-                    <p
-                        class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
+                    <x-svg-icon name="dashboard"/>
+                    <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
                         Dashboard</p>
                 </a>
             </li>
             <li>
-                <a href="{{ route("admin-films") }}"
+                <a href="{{ route("films.index") }}"
                    class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
                    type="a">
-                    <x-icon name="medicine"/>
-                    <p
-                        class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
+                    <x-svg-icon name="medicine"/>
+                    <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
                         Films</p>
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{ route("categories.index") }}"
                    class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
                    type="a">
-                    <x-icon name="medicine"/>
+                    <x-svg-icon name="medicine"/>
+                    <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
+                        Categories
+                    </p>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route("rooms.index") }}"
+                   class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
+                   type="a">
+                    <x-svg-icon name="medicine"/>
                     <p
                         class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
                         Rooms</p>

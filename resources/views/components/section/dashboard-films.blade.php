@@ -17,11 +17,7 @@
                     <strong>{{ count($films) }}</strong> medicines
                 </p>
             </div>
-            <button data-modal-target="film-create" data-modal-toggle="film-create"
-                    class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85]  flex items-center gap-4 px-4 capitalize"
-                    type="button">
-                Create Film
-            </button>
+            <x-modals.button modalId="film-create">Create Film</x-modals.button>
 
         </div>
         <div class="p-6 overflow-x-scroll px-0 pt-0 pb-2">
@@ -32,7 +28,6 @@
                     <x-elements.th>Title</x-elements.th>
                     <x-elements.th>Description</x-elements.th>
                     <x-elements.th>Duration</x-elements.th>
-                    <x-elements.th>Room</x-elements.th>
                     <x-elements.th>Category</x-elements.th>
                     <x-elements.th>Genre</x-elements.th>
                     <x-elements.th>Country</x-elements.th>
@@ -54,7 +49,6 @@
                             class="leading-normal text-blue-red-900 font-bold">{{ $film->title }}</x-elements.td>
                         <x-elements.td>{{ $film->description }}</x-elements.td>
                         <x-elements.td>{{ $film->duration }}</x-elements.td>
-                        <x-elements.td>{{ $film->room->name }}</x-elements.td>
                         <x-elements.td>{{ $film->category->name }}</x-elements.td>
                         <x-elements.td>{{ $film->genre }}</x-elements.td>
                         <x-elements.td>{{ $film->country }}</x-elements.td>
@@ -77,15 +71,15 @@
                                 data-modal-toggle="film-edit"
                                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
                                 type="button">
-                                <x-icon name="edit"/>
+                                <x-svg-icon name="edit"/>
                             </button>
 
-                            <x-modals.film-update :data="$data" :title="$film->title"/>
-                            <form action="{{ route('film-delete', $film->title) }}" method="post">
+                            <x-modals.film-update :data="$data" :slug="$film->slug"/>
+                            <form action="{{ route('films.destroy', $film->slug) }}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button>
-                                    <x-icon name="delete"/>
+                                    <x-svg-icon name="delete"/>
                                 </button>
                             </form>
                         </td>
