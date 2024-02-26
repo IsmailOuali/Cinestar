@@ -1,5 +1,4 @@
 
-
 <x-layout>
    {{-- @include('includes.navbar') --}}
    <header class=" bg-[url('./assets/home.jpg')] h-screen bg-cover	bg-no-repeat	bg-center	">

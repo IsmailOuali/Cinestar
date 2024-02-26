@@ -48,17 +48,16 @@ services:
                 - "${DB_USERNAME}"
             retries: 3
             timeout: 5s
-            pgadmin:
-                image: dpage/pgadmin4
-                environment:
-                    PGADMIN_DEFAULT_EMAIL: "admin@example.com"
-                    PGADMIN_DEFAULT_PASSWORD: "admin_password"
-                    PGADMIN_LISTEN_PORT: 5050
-                ports:
-                   - "5050:5050"
-                networks:
-                   - sail
-
+    pgadmin:
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "admin@example.com"
+            PGADMIN_DEFAULT_PASSWORD: "admin_password"
+            PGADMIN_LISTEN_PORT: 5050
+        ports:
+            - "5050:5050"
+        networks:
+            - sail
 
 networks:
     sail:
