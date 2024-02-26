@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
-use App\Models\Film;
-use App\Models\Room;
 use App\Services\ImageService;
 
 class CategoryController extends Controller
@@ -35,8 +33,10 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validated();
         $category = Category::create($validatedData);
-        $imageName = $this->imageService->move($request->file("image"));
-        $category->image()->create(["path" => $imageName]);
+        if ($request->has("image")) {
+            $imageName = $this->imageService->move($request->file("image"));
+            $category->image()->create(["path" => $imageName]);
+        }
 
         return redirect()->back()->with("success", "category created successfully");
     }
