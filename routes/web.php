@@ -3,10 +3,10 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\FilmRoomController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ZoneController;
-use App\Models\Schedule;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return "still in the backlog";
-});
+Route::resource('/', MemberController::class);
 
 Route::resource("/dashboard/categories", CategoryController::class);
 Route::resource("/dashboard/films", FilmController::class);
