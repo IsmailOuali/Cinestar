@@ -24,7 +24,7 @@ class FilmController extends Controller
     public function index()
     {
         return view("admin.films", [
-            "films" => Film::paginate(7),
+            "films" => Film::with("category", "image")->paginate(10),
             "data" => [
                 "categories" => Category::all(),
             ]

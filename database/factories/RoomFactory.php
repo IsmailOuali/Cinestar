@@ -18,6 +18,7 @@ class RoomFactory extends Factory
     {
         return [
             "name" => $this->faker->word,
+            "seats_total" => $this->faker->numberBetween(30, 100),
         ];
     }
 }

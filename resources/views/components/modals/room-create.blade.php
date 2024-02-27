@@ -7,6 +7,7 @@
         <div class="flex flex-col gap-2">
 
             <x-inputs.n-input name="name" type="text" placeholder="enter room name"/>
+            <x-inputs.n-input name="seats_total" type="number" placeholder="enter total number of seats"/>
             <x-inputs.file name="image"/>
         </div>
         <div class="flex justify-between my-4">

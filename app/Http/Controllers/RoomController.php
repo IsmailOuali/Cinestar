@@ -21,7 +21,7 @@ class RoomController extends Controller
     public function index()
     {
         return view ("admin.rooms", [
-            "rooms" => Room::paginate(6),
+            "rooms" => Room::with("image", "zones")->paginate(6),
         ]);
     }
 

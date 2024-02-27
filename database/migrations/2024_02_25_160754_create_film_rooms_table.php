@@ -12,12 +12,14 @@ return new class extends Migration {
     {
         Schema::create('film_rooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("room_id")
-                ->constrained("rooms");
             $table->foreignId("film_id")
-                ->constrained("films");
-            $table->timestamp("screening_date");
-            $table->boolean("is_full");
+                ->constrained("films")
+                ->cascadeOnDelete();
+            $table->foreignId("room_id")
+                ->constrained("rooms")
+                ->cascadeOnDelete();
+            $table->boolean("is_full")->default(false);
+            $table->datetime("screening_date");
             $table->timestamps();
         });
     }

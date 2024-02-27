@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFilmRoomRequest;
 use App\Http\Requests\UpdateFilmRoomRequest;
+use App\Models\Film;
 use App\Models\FilmRoom;
+use App\Models\Room;
 
 class FilmRoomController extends Controller
 {
@@ -13,15 +15,15 @@ class FilmRoomController extends Controller
      */
     public function index()
     {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view("admin.schedules", [
+                "schedules" => FilmRoom::all(),
+                "data" => [
+                    "films" => Film::all(),
+                    "rooms" => Room::all(),
+                ]
+            ]
+        );
     }
 
     /**
@@ -29,31 +31,18 @@ class FilmRoomController extends Controller
      */
     public function store(StoreFilmRoomRequest $request)
     {
-        //
-    }
+        $validatedData = $request->validated();
+        FilmRoom::create($validatedData);
+        return redirect()->back()->with("success", "show added to schedule successfully");
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(FilmRoom $filmRoom)
-    {
-        //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(FilmRoom $filmRoom)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateFilmRoomRequest $request, FilmRoom $filmRoom)
     {
-        //
+        dd($filmRoom);
+        $validatedData = $request->validated();
     }
 
     /**
@@ -61,6 +50,7 @@ class FilmRoomController extends Controller
      */
     public function destroy(FilmRoom $filmRoom)
     {
-        //
+        $filmRoom->delete();
+        return redirect()->back()->with("success", "schedule deleted successfully");
     }
 }
