@@ -30,9 +30,10 @@ Route::resource("/dashboard/rooms", RoomController::class);
 Route::resource("/dashboard/rooms/zones", ZoneController::class);
 
 
-Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);
- 
-Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback']);
+// Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);
+// Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback']);
+Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
+Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallback'])->name('google.callback');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
