@@ -3,12 +3,8 @@
 namespace App\Events;
 
 use App\Models\FilmRoom;
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
@@ -20,9 +16,7 @@ class ScheduleDeletedEvent
      * Create a new event instance.
      */
     public function __construct(public FilmRoom $schedule)
-    {
-
-    }
+    {}
 
     /**
      * Get the channels the event should broadcast on.
