@@ -171,6 +171,7 @@ return [
 
 //        my own service provider
         App\Providers\FakeServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ])->toArray(),
 
     /*

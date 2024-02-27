@@ -18,8 +18,8 @@ class ProviderController extends Controller
     }
 
     public function callback($provider){
-        $socialUser = Socialite::driver('google')->stateless()->user();
-        // dd($socialUser);
+        $socialUser = Socialite::driver($provider)->user();
+        dd($socialUser);
         $user = User::updateOrCreate([
             'provider_id' => $socialUser->id,
             'provider' => $provider
@@ -27,11 +27,10 @@ class ProviderController extends Controller
             'name' => $socialUser->name,
             'email' => $socialUser->email,
             'provider_token' => $socialUser->token,
-            'provider_refresh_token' => $socialUser->refreshToken,
         ]);
      
         Auth::login($user);
 
-        return redirect('dashboard');
+        return redirect('/dashboard');
     }
 }
