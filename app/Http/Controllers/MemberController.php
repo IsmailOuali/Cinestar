@@ -11,8 +11,14 @@ class MemberController extends Controller
 {
     public function index (){
         return view ("member.index", [
-            "films" => Film::with("image", "category")->get(),
-            "top_film" => FilmRoom::whereDate("screening_date", ">=", Carbon::today())
+            "films" => Film::with("image", "category")->paginate(8),
+            "schedules" => FilmRoom::whereDate("screening_date", ">=",Carbon::today())->paginate(8),
         ]);
     }
+    public function show(Film $film){
+        return view ("member.show", [
+            "film" => $film->with("category", "image")->first(),
+        ]);
+    }
+
 }

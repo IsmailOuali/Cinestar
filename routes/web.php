@@ -5,7 +5,6 @@ use App\Http\Controllers\FilmController;
 use App\Http\Controllers\FilmRoomController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\RoomController;
-use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ZoneController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/', MemberController::class);
+Route::get('/', [MemberController::class, "index"]);
+Route::resource("/movies", MemberController::class)
+    ->except(["index"])
+    ->parameters(["movies" => "films"]);
 
 Route::resource("/dashboard/categories", CategoryController::class);
 Route::resource("/dashboard/films", FilmController::class);

@@ -44,16 +44,16 @@ class DatabaseSeeder extends Seeder
             'screening_date' => '2024-02-27 12:23:09'
         ]);
 
-        Booking::create([
-            "schedule_id" => 1,
-            "member_id" => 3,
-            "seat_number" => 2
-        ]);
-        Booking::create([
-            "schedule_id" => 5,
-            "member_id" => 2,
-            "seat_number" => 6
-        ]);
+//        Booking::create([
+//            "schedule_id" => 1,
+//            "member_id" => 3,
+//            "seat_number" => 2
+//        ]);
+//        Booking::create([
+//            "schedule_id" => 5,
+//            "member_id" => 2,
+//            "seat_number" => 6
+//        ]);
 
 
     }
