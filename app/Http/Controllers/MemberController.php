@@ -15,11 +15,5 @@ class MemberController extends Controller
             "schedules" => FilmRoom::whereDate("screening_date", ">=",Carbon::today())->paginate(8),
         ]);
     }
-    // public function show(Film $film){
-
-    //     return view ("member.movie-details", [
-    //         "film" => $film->with("category", "image")->first(),
-    //     ]);
-    // }
 
 }

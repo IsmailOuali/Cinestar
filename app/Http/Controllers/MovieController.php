@@ -10,11 +10,11 @@ class MovieController extends Controller
 {
     public function show(Film $film)
     {
-        $isAvailable = FilmRoom::where("film_id", $film->id)->whereDate("screening_date", ">=", Carbon::today())->exists();
+        $isAvailable = FilmRoom::where("film_id", $film->id)->whereDate("screening_date", ">=", Carbon::today())->get();
 
         return view("member.movie-details", [
             "film" => $film->load("category", "image"),
-            "isAvailable" => $isAvailable,
+            "availableSchedules" => $isAvailable,
         ]);
     }
     public function availableSchedules(Film $film){
@@ -22,7 +22,7 @@ class MovieController extends Controller
 
         return view("member.schedules-details", [
             "availableSchedules" => $availableSchedules,
+            "film" => $film,
         ]);
-
     }
 }

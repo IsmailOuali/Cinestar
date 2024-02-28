@@ -381,11 +381,9 @@ body.active { overflow: hidden; }
 \*-----------------------------------*/
 
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
+
     width: 100%;
-    padding-block: 25px;
+    padding-block: 10px;
     transition: var(--transition-2);
     z-index: 4;
 }
