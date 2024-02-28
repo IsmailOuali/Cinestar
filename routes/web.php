@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', [MemberController::class, "index"]);
-
 Route::get("/movies/{film}", [MovieController::class, "show"])->name("movies.show");
-
 Route::get("/booking/create/{id}", [BookingController::class,"create"])->name("booking.create");
 Route::get("/test", [BookingController::class, "index"]);
 
+Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
 Route::resource("/dashboard/categories", CategoryController::class);
 Route::resource("/dashboard/films", FilmController::class);
 Route::resource("/dashboard/rooms", RoomController::class);
@@ -34,9 +34,6 @@ Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect'])
 
 Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

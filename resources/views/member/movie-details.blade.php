@@ -93,13 +93,13 @@
                                 </div>
                                 <div class="bg-yellow-400 font-bold rounded-xl p-2">7.2</div>
                             </div>
-                            <div class="">
+                            <div>
                                 <div class="text-sm text-gray-400">Screening date: </div>
                                 <div class="text-lg text-gray-800">{{ $date . ' - ' . $time }}</div>
                             </div>
-                            <div class="">
-                                <div class="text-sm text-gray-400">Number of Zones: </div>
-                                <div class="text-lg text-gray-800">{{ count($schedule->room->zones) }}</div>
+                            <div>
+                                <div class="text-sm text-gray-400">Number of Zones: <span class="text-lg text-gray-800">{{ count($schedule->room->zones) }}</span></div>
+                                <div class="text-sm text-gray-400">Number of Seats: <span class="text-lg text-gray-800">{{ $schedule->room->seats_total }}</span></div>
                             </div>
 
                             <div class="flex text-2xl font-bold text-a">
