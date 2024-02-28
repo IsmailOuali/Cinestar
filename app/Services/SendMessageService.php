@@ -27,7 +27,7 @@ abstract class SendMessageService
         return $newNotifications;
     }
 
-    public function findScheduleMembers($schedule): array|false
+    public function findScheduleMembers($schedule): array|bool
     {
         $idOfMembersToNotify = Booking::where("schedule_id", $schedule->id)->pluck("member_id")->toArray();
 
