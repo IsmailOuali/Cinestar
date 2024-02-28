@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ScheduleDeletedEvent;
+use App\Events\ScheduleUpdatedEvent;
 use App\Http\Requests\StoreFilmRoomRequest;
 use App\Http\Requests\UpdateFilmRoomRequest;
 use App\Models\Film;
@@ -36,13 +38,19 @@ class FilmRoomController extends Controller
         return redirect()->back()->with("success", "show added to schedule successfully");
 
     }
+
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateFilmRoomRequest $request, FilmRoom $filmRoom)
     {
-        dd($filmRoom);
         $validatedData = $request->validated();
+        $filmRoom->update([
+            "room_id" => $validatedData['room_id'],
+            "screening_date" => $validatedData["screening_date"]
+        ]);
+        ScheduleUpdatedEvent::dispatch($filmRoom);
+        return redirect()->back()->with("success", "schedule updated successfullyw");
     }
 
     /**
@@ -50,6 +58,7 @@ class FilmRoomController extends Controller
      */
     public function destroy(FilmRoom $filmRoom)
     {
+        ScheduleDeletedEvent::dispatch($filmRoom);
         $filmRoom->delete();
         return redirect()->back()->with("success", "schedule deleted successfully");
     }

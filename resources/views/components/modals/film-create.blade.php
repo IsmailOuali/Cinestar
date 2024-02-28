@@ -7,7 +7,13 @@
             <x-inputs.n-input name="actors" type="text" placeholder="Eg: jhon snow, akil salah, aymane "/>
             <div class="flex justify-around">
                 <x-inputs.n-input name="duration" type="time"/>
-                <x-inputs.n-input name="year" type="date"/>
+                <div class="col-span-2">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Year</label>
+                    <input class="min-w-[170px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="number" min="1900" max="2099" step="1" value="2016" />
+                    @error("year")
+                    <span>{{ $message }}</span>
+                    @enderror
+                </div>
                 <x-inputs.select-loop name="category_id" :data="$data['categories']"/>
                 <x-inputs.select-enum name="country" :enum="App\Enums\Countries::cases()"/>
                 <x-inputs.select-enum name="language" :enum="App\Enums\Language::cases()"/>

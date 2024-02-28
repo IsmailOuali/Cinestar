@@ -40,7 +40,7 @@
                     <tr>
                         <td class="py-3 px-5 border-b border-blue-gray-50">
                             <div class="flex items-center gap-4">
-                                <img class="w-24 h-24" src="/"
+                                <img class="w-24 h-24" src="{{ asset("storage/"/* $film->image->path*/) }}"
                                      alt="">
                             </div>
                             {{--                            {{ asset('storage/' . $film->image->path ?? null) }}--}}
@@ -57,6 +57,7 @@
                             <button
                                 data-id="{{ $film->id }}"
                                 data-title="{{ $film->title }}"
+                                data-slug="{{ $film->slug }}"
                                 data-description="{{ $film->description }}"
                                 data-genre="{{ $film->genre }}"
                                 data-actors="{{ $film->actors }}"
