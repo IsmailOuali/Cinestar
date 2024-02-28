@@ -2,66 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\FilmRoom;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return view("welcome", [
-            "films" => Film::paginate(6),
-
+    public function index (){
+        return view ("member.index", [
+            "films" => Film::with("image", "category")->paginate(8),
+            "schedules" => FilmRoom::whereDate("screening_date", ">=",Carbon::today())->paginate(8),
         ]);
     }
+    // public function show(Film $film){
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+    //     return view ("member.movie-details", [
+    //         "film" => $film->with("category", "image")->first(),
+    //     ]);
+    // }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

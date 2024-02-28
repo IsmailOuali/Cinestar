@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string("slug");
             $table->text("description");
             $table->string("duration");
-            $table->date("year");
+            $table->year("year");
             $table->string("country");
             $table->string("language");
             $table->string("genre");

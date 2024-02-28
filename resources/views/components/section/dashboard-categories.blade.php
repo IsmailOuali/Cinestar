@@ -35,7 +35,7 @@
                     <tr>
                         <td class="py-3 px-5 border-b border-blue-gray-50">
                             <div class="flex items-center gap-4">
-                                <img class="w-24 h-24" src="/"
+                                <img class="w-24 h-24" src="{{ asset("storage/" . false/* $category->image->path */) }}"
                                      alt="">
                             </div>
                         </td>
@@ -44,7 +44,7 @@
                         <x-elements.td>{{ $category->description }}</x-elements.td>
                         <td class="py-3 px-5 border-b border-blue-gray-50 flex items-center gap-2">
                             <button
-                                data-id="{{ $category->id }}"
+                                data-slug="{{ $category->slug }}"
                                 data-name="{{ $category->name }}"
                                 data-description="{{ $category->description }}"
                                 data-modal-target="category-edit"
@@ -53,7 +53,7 @@
                                 type="button">
                                 <x-svg-icon name="edit"/>
                             </button>
-                            <x-modals.category-update :slug="$category->slug"/>
+                            <x-modals.category-update/>
 
                             <x-modals.button modalId="category-delete">
                                 <x-svg-icon name="delete"/>

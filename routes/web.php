@@ -3,10 +3,10 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\FilmRoomController;
+
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RoomController;
-use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ZoneController;
-use App\Models\Schedule;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\ProviderController;
@@ -24,8 +24,12 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::resource("/", MemberController::class)->parameters(["film"]);
+Route::get('/', [MemberController::class, "index"]);
 
+Route::get("/movies/{film}", [MovieController::class, "show"])->name("movies.show");
+Route::get("/available-schedules/{film}", [MovieController::class, "availableSchedules"])->name("available.schedules");
+
+// Dashboard routes
 Route::resource("/dashboard/categories", CategoryController::class);
 Route::resource("/dashboard/films", FilmController::class);
 Route::resource("/dashboard/rooms", RoomController::class);
@@ -33,6 +37,7 @@ Route::resource("/dashboard/rooms/zones", ZoneController::class);
 Route::resource("/dashboard/schedules", FilmRoomController::class)->parameters([
     'schedules' => 'filmRoom',
 ]);;
+
 
 
 Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);

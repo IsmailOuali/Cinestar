@@ -1,6 +1,6 @@
 <x-modals.modal modalId="zone-edit" modalTitle="edit zone" width="max-w-xl">
     <!-- Modal body -->
-    <form action="{{ route("zones.update", $slug) }}" method="post" class="p-4 md:p-5">
+    <form id="zone-update" method="post" class="p-4 md:p-5">
         @method("put")
         @csrf
         <div class="flex flex-col gap-4 mb-4 ">

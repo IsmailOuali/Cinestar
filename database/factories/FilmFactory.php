@@ -28,7 +28,7 @@ class FilmFactory extends Factory
         return [
             "title" => $faker->sentence,
             "description" => $faker->text,
-            "year" => $faker->date,
+            "year" => $faker->year,
             "duration" => $faker->duration,
             "country" => $faker->country,
             "language" => $faker->country,
