@@ -36,5 +36,4 @@ abstract class SendMessageService
         }
         return Booking::where("schedule_id", $schedule->id)->pluck("member_id")->toArray();
     }
-
 }

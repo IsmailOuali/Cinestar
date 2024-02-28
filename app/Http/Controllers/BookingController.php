@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
-    public function index(){
-        $object = "hello world";
-        $body = "fuck the world";
-        Mail::to("znagui@gmail.com")->send(new TicketMail( $object, $body ));
-    }
     public function create ($id){
         $schedule = FilmRoom::find($id);
         return view("member.roomSchema", compact("schedule"));
