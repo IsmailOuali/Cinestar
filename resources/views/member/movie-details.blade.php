@@ -4,7 +4,7 @@
 
             <figure class="movie-detail-banner">
 
-                <img src="./assets/images/movie-4.png" alt="Free guy movie poster">
+                <img src="/assets/images/movie-4.png" alt="Free guy movie poster">
 
                 <button class="play-btn">
                     <ion-icon name="play-circle-outline"></ion-icon>
@@ -57,12 +57,12 @@
                 <p class="storyline">
                     {{ $film->description }}
                 </p>
-                <a href="" class="btn btn-primary w-fit">
-                    <ion-icon name="play"></ion-icon>
-
-                    <span>Book now</span>
-                </a>
-
+                @if ($isAvailable)
+                    <a href="{{ route("available.schedules", $film->slug) }}" class="btn btn-primary w-fit">
+                        <ion-icon name="play"></ion-icon>
+                        <span>Book now</span>
+                    </a>
+                @endunless
 
             </div>
 

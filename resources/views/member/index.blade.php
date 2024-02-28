@@ -51,21 +51,54 @@
         </div>
     </section>
 
+    <section class="upcoming">
+        <div class="container">
 
-            <section class="top-rated">
-                <div class="container">
-                    <x-movie-types />
+            <div class="flex-wrapper">
 
-                    <p class="section-subtitle">Coming Movies</p>
+                <div class="title-wrapper">
+                    <p class="section-subtitle">Online Streaming</p>
 
-                    <h2 class="h2 section-title">All</h2>
-
-                    <x-all-movies :films="$films" />
-
+                    <h2 class="h2 section-title">Upcoming Movies</h2>
                 </div>
-            </section>
+
+                <ul class="filter-list">
+
+                    <li>
+                        <button class="filter-btn">Movies</button>
+                    </li>
+
+                    <li>
+                        <button class="filter-btn">TV Shows</button>
+                    </li>
+
+                    <li>
+                        <button class="filter-btn">Anime</button>
+                    </li>
+
+                </ul>
+
+            </div>
+
+           <x-all-schedules :schedules="$schedules"/>
+        </div>
+    </section>
+
+
+    <section class="top-rated">
+        <div class="container">
+            <x-movie-types />
+
+            <p class="section-subtitle">Coming Movies</p>
+
+            <h2 class="h2 section-title">All</h2>
+
+            <x-all-movies :films="$films" />
 
         </div>
+    </section>
+
+    </div>
     </section>
 
 

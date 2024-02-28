@@ -1,7 +1,7 @@
-@props(['availableFilms'])
+@props(['films'])
 
 <ul class="movies-list">
-@foreach ($availableFilms as $film)
+@foreach ($films as $film)
     <li>
         <div class="movie-card">
 
@@ -13,7 +13,7 @@
 
             <div class="title-wrapper">
                 <a href="{{ route("movies.show", $film->slug) }}">
-                    <h3 class="card-title">{{ $film->title }}</h3>
+                    <h3 class="card-title font-bold text-lg">{{ $film->title }}</h3>
                 </a>
 
                 <time datetime="{{ $film->year }}">{{ $film->year }}</time>
@@ -23,6 +23,7 @@
                 <div class="badge badge-outline">{{ $film->category->name }}</div>
 
                 <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
 
                     <time datetime="PT137M">{{ $film->duration }}</time>
                 </div>

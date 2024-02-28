@@ -1,36 +1,35 @@
-@props(['films'])
+@props(['schedules'])
+<ul class="movies-list  has-scrollbar">
+    @foreach ($schedules as $schedule)
+        <li>
+            <div class="movie-card">
 
-<ul class="movies-list">
-@foreach ($films as $film)
-    <li>
-        <div class="movie-card">
-
-            <a href="{{ route("movies.show", $film->slug) }}">
-                <figure class="card-banner">
-                    <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
-                </figure>
-            </a>
-
-            <div class="title-wrapper">
-                <a href="{{ route("movies.show", $film->slug) }}">
-                    <h3 class="card-title">{{ $film->title }}</h3>
+                <a href="{{ route('movies.show', $schedule->film->slug) }}">
+                    <figure class="card-banner">
+                        <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
+                    </figure>
                 </a>
 
-                <time datetime="{{ $film->year }}">{{ $film->year }}</time>
-            </div>
+                <div class="title-wrapper">
+                    <a href="{{ route('movies.show', $schedule->film->slug) }}">
+                        <h3 class="card-title font-bold text-lg">{{ $schedule->film->title }}</h3>
+                    </a>
 
-            <div class="card-meta">
-                <div class="badge badge-outline">{{ $film->category->name }}</div>
-
-                <div class="duration">
-
-                    <time datetime="PT137M">{{ $film->duration }}</time>
+                    <time datetime="{{ $schedule->film->year }}">{{ $schedule->film->year }}</time>
                 </div>
-            </div>
 
-        </div>
-    </li>
-@endforeach
+                <div class="card-meta">
+                    <p class="text-sm text-white"><span class="font-bold">Schedule Date:</span> {{ $schedule->screening_date }}</p>
+
+                    <div class="duration">
+                        <ion-icon name="time-outline"></ion-icon>
+
+                        <time datetime="PT137M">{{ $schedule->film->duration }}</time>
+                    </div>
+                </div>
+
+            </div>
+        </li>
+    @endforeach
 
 </ul>
-
