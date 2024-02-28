@@ -10,6 +10,7 @@ use App\Http\Controllers\ZoneController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\ProviderController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 
@@ -28,6 +29,9 @@ Route::get('/', [MemberController::class, "index"]);
 
 Route::get("/movies/{film}", [MovieController::class, "show"])->name("movies.show");
 Route::get("/available-schedules/{film}", [MovieController::class, "availableSchedules"])->name("available.schedules");
+
+//Booking routes
+Route::get('booking', [BookingController::class, "index"]);
 
 // Dashboard routes
 Route::resource("/dashboard/categories", CategoryController::class);
@@ -53,5 +57,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
+
 
 require __DIR__ . '/auth.php';

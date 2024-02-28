@@ -13,7 +13,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        return view("member.reservation");
     }
 
     /**
@@ -51,10 +51,10 @@ class BookingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBookingRequest $request, Booking $booking)
-    {
-        //
-    }
+    // public function update(UpdateBookingRequest $request, Booking $booking)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
