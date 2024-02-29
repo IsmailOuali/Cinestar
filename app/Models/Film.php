@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 class Film extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, QueryCacheable;
 
+    public int $cacheFor = 3600;
+    protected static bool $flushCacheOnUpdate = true;
     /**
      * @var string[]
      */

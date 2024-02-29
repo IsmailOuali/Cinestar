@@ -19,6 +19,4 @@ class SendNotificationService extends SendMessageService
             Notification::insert($notifications);
         }
     }
-
-
 }

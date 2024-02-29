@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateFilmRequest;
 use App\Models\Category;
 use App\Models\Film;
 use App\Services\ImageService;
-use Illuminate\Http\Request;
 
 class FilmController extends Controller
 {
