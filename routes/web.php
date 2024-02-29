@@ -1,22 +1,21 @@
 <?php
 
+use App\Http\Controllers\Auth\ProviderController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\FilmRoomController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ZoneController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
-use App\Http\Controllers\Auth\ProviderController;
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
 
 Route::get('/', [MemberController::class, "index"]);
 Route::get("/movies/{film}", [MovieController::class, "show"])->name("movies.show");
-Route::get("/booking/create/{id}", [BookingController::class,"create"])->name("booking.create");
+Route::get("/booking/create/{id}", [BookingController::class, "create"])->name("booking.create");
 Route::get("/test", [BookingController::class, "index"]);
 
 Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
@@ -27,7 +26,6 @@ Route::resource("/dashboard/rooms/zones", ZoneController::class);
 Route::resource("/dashboard/schedules", FilmRoomController::class)->parameters([
     'schedules' => 'filmRoom',
 ]);;
-
 
 
 Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);
@@ -41,5 +39,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
