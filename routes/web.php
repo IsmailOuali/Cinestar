@@ -13,25 +13,25 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ZoneController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [MemberController::class, "index"]);
-Route::get("/movies/{film}", [MovieController::class, "show"])->name("movies.show");
-Route::get("/booking/create/{id}", [BookingController::class, "create"])->name("booking.create");
-Route::get("/test", [BookingController::class, "index"]);
+Route::middleware(["auth"])->group(function () {
+    Route::get('/', [MemberController::class, "index"]);
+    Route::get("/movies/{film}", [MovieController::class, "show"])->name("movies.show");
+    Route::get("/booking/create/{id}", [BookingController::class, "create"])->name("booking.create");
+});
 
-Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
-Route::resource("/dashboard/categories", CategoryController::class);
-Route::resource("/dashboard/films", FilmController::class);
-Route::resource("/dashboard/rooms", RoomController::class);
-Route::resource("/dashboard/rooms/zones", ZoneController::class);
-Route::resource("/dashboard/schedules", FilmRoomController::class)->parameters([
-    'schedules' => 'filmRoom',
-]);;
-
+Route::middleware(["auth"])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
+    Route::resource("/dashboard/categories", CategoryController::class);
+    Route::resource("/dashboard/films", FilmController::class);
+    Route::resource("/dashboard/rooms", RoomController::class);
+    Route::resource("/dashboard/rooms/zones", ZoneController::class);
+    Route::resource("/dashboard/schedules", FilmRoomController::class)->parameters([
+        'schedules' => 'filmRoom',
+    ]);;
+});
 
 Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);
-
 Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback']);
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
