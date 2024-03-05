@@ -33,6 +33,7 @@
                         <td class="py-3 px-5 border-b border-blue-gray-50 flex items-center gap-2">
                             <button
                                 data-id="{{ $zone->id }}"
+                                data-slug="{{ $zone->slug }}"
                                 data-name="{{ $zone->name }}"
                                 data-price="{{ $zone->price }}"
                                 data-seats="{{ $zone->number_of_seats }}"

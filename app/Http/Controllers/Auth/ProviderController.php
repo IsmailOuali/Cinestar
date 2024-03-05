@@ -19,7 +19,6 @@ class ProviderController extends Controller
 
     public function callback($provider){
         $socialUser = Socialite::driver($provider)->user();
-        dd($socialUser);
         $user = User::updateOrCreate([
             'provider_id' => $socialUser->id,
             'provider' => $provider

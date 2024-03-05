@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 class Category extends Model
 {
-    use HasFactory, Sluggable;
-
+    use HasFactory, Sluggable, QueryCacheable;
+    public int $cacheFor = 3600;
+    protected static bool $flushCacheOnUpdate = true;
     protected $fillable = [
         "name",
         "description"

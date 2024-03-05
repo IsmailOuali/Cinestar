@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, QueryCacheable;
+
+    public int $cacheFor = 3600;
+    protected static bool $flushCacheOnUpdate = true;
 
     /**
      * The attributes that are mass assignable.
@@ -51,6 +56,7 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
     public function image(): MorphOne
     {
         return $this->morphOne(Image::class, "imageable");

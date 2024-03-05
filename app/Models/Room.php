@@ -5,15 +5,19 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 class Room extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, QueryCacheable;
+
+    public int $cacheFor = 3600;
+    protected static bool $flushCacheOnUpdate = true;
 
     protected $fillable = ["name", "seats_total"];
+
     public function zones(): HasMany
     {
         return $this->hasMany(Zone::class);
