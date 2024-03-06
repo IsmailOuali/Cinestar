@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
 use App\Models\Booking;
+use App\Models\FilmRoom;
 
 class BookingController extends Controller
 {
@@ -29,15 +30,16 @@ class BookingController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Booking $booking)
+    public function show(FilmRoom $filmRoom)
     {
-        //
+        return view("member.schedules-details", [
+            'filmRoom' => $filmRoom->load("room.zones"),
+        ]);
     }
 
     /**

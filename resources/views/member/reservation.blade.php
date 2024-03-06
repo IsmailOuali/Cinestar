@@ -10,112 +10,7 @@ body{
     height: 100vh; */
 }
 
-.movie-container {
-  margin: 20px 0;
-}
 
-.movie-container select {
-  background-color: #fff;
-  border: 0;
-  border-radius: 5px;
-  font-size: 14px;
-  margin-left: 10px;
-  padding: 5px 15px 5px 15px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-}
-
-.container {
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
-  margin-bottom: 30px;
-}
-
-.seat {
-  background-color: #444451;
-  height: 12px;
-  width: 15px;
-  margin: 3px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.seat.selected {
-  background-color: #6feaf6;
-}
-
-.seat.occupied {
-  background-color: #fff;
-}
-
-
-.seat:not(.occupied) {
-  -webkit-transition: all .1s;
-  transition: all .1s;
-}
-
-.seat:not(.occupied):hover {
-  cursor: pointer;
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-}
-
-.showcase .seat:not(.occupied):hover {
-  cursor: default;
-  -webkit-transform: scale(1);
-          transform: scale(1);
-}
-
-.showcase {
-  background-color: rgba(0, 0, 0, 0.1);
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #777;
-  list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.showcase li {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin: 0 10px;
-}
-
-.showcase li small {
-  margin-left: 2px;
-}
-
-.row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.screen {
-  background-color: #fff;
-  height: 10rem;
-
-  width: 50%;
-  margin: auto;
-
-  -webkit-transform: rotateX(-45deg);
-          transform: rotateX(-45deg);
-  -webkit-box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
-          box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
-}
 
 p.text {
   margin: 5px 0;
@@ -211,33 +106,8 @@ p.text span {
     <p class="text">You have selected <span id="count">0</span> seats for a price of $<span id="total">0</span></p>
 
 
-    <div class=" bg-slate-800 rounded-2xl p-8 w-3/4 m-auto container">
-        <div class="screen"></div>
-        <div class=" p-4 flex justify-between items-center">
-          <div class="grid grid-cols-6 md:grid-cols-25 gap-4 w-1/5	">
-            @for ($i = 0; $i < 42; $i++)
-            <div id="{{ $i }}" class="seat"></div>
-
-                
-            @endfor
-        </div>
-
-        <div class="grid grid-cols-12 md:grid-cols-25 gap-4 w-2/5		">
-            @for ($i = 0; $i < 84; $i++)
-            <div class="seat"></div>
-
-                
-            @endfor
-        </div>
-          <div class="grid grid-cols-6 md:grid-cols-25 gap-4 w-1/5	">
-            @for ($i = 0; $i < 42; $i++)
-            <div class="seat"></div>
-
-                
-            @endfor
-        </div>
-    </div>
-    </div>
+   
+    
     {{-- <script>
     console.log('rrr');
     const container = document.querySelector('.container');

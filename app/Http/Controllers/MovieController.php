@@ -11,18 +11,24 @@ class MovieController extends Controller
     public function show(Film $film)
     {
         $isAvailable = FilmRoom::where("film_id", $film->id)->whereDate("screening_date", ">=", Carbon::today())->exists();
+        $show = FilmRoom::where("film_id", $film->id)->get();
 
         return view("member.movie-details", [
             "film" => $film->load("category", "image"),
             "isAvailable" => $isAvailable,
+            "show" => $show,
         ]);
     }
-    public function availableSchedules(Film $film){
-        $availableSchedules = FilmRoom::where("film_id", $film->id)->whereDate("screening_date", ">=", Carbon::today())->get();
+    public function availableSchedules(Film $film)
+    {
+        $availableSchedules = FilmRoom::where("film_id", $film->id)
+            ->whereDate("screening_date", ">=", Carbon::today())
+            ->with(["room.zones"])
+            ->get();
 
-        return view("member.schedules-details", [
-            "availableSchedules" => $availableSchedules,
-        ]);
-
+        dump($availableSchedules[0]->room);
+        // return view("member.schedules-details", [
+        //     "availableSchedules" => $availableSchedules,
+        // ]);
     }
 }

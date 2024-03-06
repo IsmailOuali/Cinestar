@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Booking;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,12 @@ Route::get('/', [MemberController::class, "index"]);
 Route::get("/movies/{film}", [MovieController::class, "show"])->name("movies.show");
 Route::get("/available-schedules/{film}", [MovieController::class, "availableSchedules"])->name("available.schedules");
 
+Route::get("booking/show/{filmRoom}", [BookingController::class, "show"])->name("booking.show");
+
 //Booking routes
-Route::get('booking', [BookingController::class, "index"]);
+Route::post('/reservation', [BookingController::class, "store"]);
+
+
 
 // Dashboard routes
 Route::resource("/dashboard/categories", CategoryController::class);

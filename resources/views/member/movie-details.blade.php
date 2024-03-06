@@ -1,3 +1,4 @@
+
 <x-layout>
     <section class="movie-detail">
         <div class="container">
@@ -66,6 +67,20 @@
 
             </div>
 
+        </div>
+        <div>
+           
+            
+               
+                @foreach ($show as $sh)
+                 <form action="{{  route("booking.show", $sh->id) }}" method="get">
+                    <button class="w-16 h-16 bg-blue-400 rounded-2xl">{{ $sh->room->name }}</button>
+
+                       </form>
+                    
+                @endforeach
+          
+         
         </div>
     </section>
 
